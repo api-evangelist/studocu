@@ -1,0 +1,28 @@
+aid: studocu
+name: Studocu
+description: 'Studocu is a company surfaced as a portfolio company of partech, point-nine and added to
+  the API Evangelist network as a stub for enrichment. Sector: Marketplace. This profile is a lead awaiting
+  the enrichment pipeline.'
+url: https://raw.githubusercontent.com/api-evangelist/studocu/refs/heads/main/apis.yml
+x-type: company
+x-source: vc-portfolio
+x-backed-by:
+- partech
+- point-nine
+x-tier: stub
+x-tier-reason: portfolio-lead
+specificationVersion: '0.20'
+created: '2026-07-17'
+modified: '2026-07-17'
+tags:
+- Company
+- Marketplace
+apis: []
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+- FN: APIs.json
+  email: info@apis.io
+common:
+- type: Website
+  url: https://www.studocu.com/
