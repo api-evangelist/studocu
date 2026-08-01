@@ -1,8 +1,27 @@
 aid: studocu
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/studocu.png
 name: Studocu
-description: 'Studocu is a company surfaced as a portfolio company of partech, point-nine and added to
-  the API Evangelist network as a stub for enrichment. Sector: Marketplace. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Studocu (operated by StudeerSnel B.V., Amsterdam) is a global online
+  learning platform and study-materials marketplace where students access, share, and
+  upload course documents, lecture notes, summaries, and exam prep across thousands
+  of institutions and subjects. The platform layers AI study tools on top of its
+  crowdsourced document library — an Ask AI chat, AI Notes generation, and an AI Quiz
+  Generator — alongside course organization, study lists, and a Premium subscription
+  for unlimited downloads and full document access. Backed by Partech and Point Nine,
+  Studocu was added to the API Evangelist network as a portfolio company. It exposes
+  no public developer API; this profile captures its public security, trust, and
+  web-property surface.'
 url: https://raw.githubusercontent.com/api-evangelist/studocu/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -13,10 +32,16 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Marketplace
+- Education
+- EdTech
+- Study Materials
+- Document Sharing
+- Learning
+- AI
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -26,3 +51,28 @@ maintainers:
 common:
 - type: Website
   url: https://www.studocu.com/
+- type: Blog
+  url: https://www.studocu.com/blog/en/
+- type: Support
+  url: mailto:support@studocu.com
+- type: Pricing
+  url: https://www.studocu.com/pricing
+- type: TermsOfService
+  url: https://www.studocu.com/terms
+- type: PrivacyPolicy
+  url: https://www.studocu.com/privacy
+- type: WellKnown
+  url: well-known/studocu-well-known.yml
+- type: SecurityTxt
+  url: well-known/studocu-security.txt
+- type: Security
+  url: https://studocu.com/vdp.html
+- type: VulnerabilityDisclosure
+  url: security/studocu-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/studocu-domain-security.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 4
+  pass: local-v1

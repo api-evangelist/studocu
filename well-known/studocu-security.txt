@@ -1,0 +1,14 @@
+# StudeerSnel B.V. security contacts and policy
+
+# Our security contact channels
+Contact: mailto:security@studocu.com
+
+# Link to our vulnerability disclosure policy
+Policy: https://studocu.com/vdp.html
+OpenBugBounty: https://openbugbounty.org/bugbounty/studocucom/
+
+# Languages that our team speaks and understands
+Preferred-Languages: en-US
+
+# Join our team
+Hiring: https://jobs.studocu.com/

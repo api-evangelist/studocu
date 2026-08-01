@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.studocu.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 11 12:15:31 2026 GMT
+  hsts: null
+domains:
+- domain: studocu.com
+  dnssec: false
+  caa:
+  - 0 issue "letsencrypt.org"
+  - 0 issue "pki.goog"
+  - 0 issue "sectigo.com"
+  - 0 iodef "mailto:security@studocu.com"
+  - 0 issue "amazon.com"
+  - 0 issue "digicert.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
