@@ -1,0 +1,21 @@
+generated: '2026-09-11'
+method: probed
+source: https://mcp.studocu.com/mcp
+status: published
+server:
+  name: studocu
+  transport: http
+  url: https://mcp.studocu.com/mcp
+deployment:
+  mode: remote
+  endpoint: https://mcp.studocu.com/mcp
+  verified: probed
+  probe: live
+  checked: '2026-09-11'
+  source: docs-check 2026-09-12 (endpoint found in the provider's own documentation, then probed)
+tools_count: 1
+tools:
+- name: search-documents
+  description: ''
+tools_source: live tools/list via initialize handshake, 2026-09-12 (signals/audit_mcp_authorship.py --probe)
+authorship: provider
