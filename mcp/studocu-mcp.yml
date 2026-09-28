@@ -16,6 +16,10 @@ deployment:
 tools_count: 1
 tools:
 - name: search-documents
-  description: ''
+  description: Use this when the user wants to find, search, or browse study documents, lecture notes,
+    summaries, or course materials on Studocu. Pass the topic/keywords as `query`, and — when you can
+    infer them — the `institution` and `course` as separat
 tools_source: live tools/list via initialize handshake, 2026-09-12 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
