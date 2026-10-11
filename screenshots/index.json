@@ -1,0 +1,11 @@
+[
+  {
+    "repo": "studocu",
+    "captured_at": "2026-10-11T192926",
+    "source_url": "https://www.studocu.com/",
+    "source_type": "Website",
+    "file": "studocu-2026-10-11T192926.png",
+    "bytes": 120818,
+    "capture": "playwright-local"
+  }
+]
