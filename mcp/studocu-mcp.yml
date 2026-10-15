@@ -1,17 +1,17 @@
 generated: '2026-09-11'
 method: probed
-source: https://mcp.studocu.com/mcp
+source: https://agent-os-mcp.alpha.studocu.com/mcp
 status: published
 server:
   name: studocu
   transport: http
-  url: https://mcp.studocu.com/mcp
+  url: https://agent-os-mcp.alpha.studocu.com/mcp
 deployment:
   mode: remote
-  endpoint: https://mcp.studocu.com/mcp
+  endpoint: https://agent-os-mcp.alpha.studocu.com/mcp
   verified: probed
   probe: live
-  checked: '2026-09-11'
+  checked: '2026-10-15'
   source: docs-check 2026-09-12 (endpoint found in the provider's own documentation, then probed)
 tools_count: 1
 tools:
@@ -23,3 +23,5 @@ tools_source: live tools/list via initialize handshake, 2026-09-12 (signals/audi
 authorship: provider
 descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
   --descriptions, 2026-09-28
+correction: 'Influence correction 2026-10-15: mcp.studocu.com is NXDOMAIN; the official MCP Registry entry com.studocu/studocu lists https://agent-os-mcp.alpha.studocu.com/mcp (streamable-http), which answers initialize 200. Landing page https://www.studocu.com/mcp.'
+registry_name: com.studocu/studocu
