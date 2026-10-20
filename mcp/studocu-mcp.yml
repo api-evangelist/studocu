@@ -23,5 +23,38 @@ tools_source: live tools/list via initialize handshake, 2026-09-12 (signals/audi
 authorship: provider
 descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
   --descriptions, 2026-09-28
-correction: 'Influence correction 2026-10-15: mcp.studocu.com is NXDOMAIN; the official MCP Registry entry com.studocu/studocu lists https://agent-os-mcp.alpha.studocu.com/mcp (streamable-http), which answers initialize 200. Landing page https://www.studocu.com/mcp.'
+correction: 'Influence correction 2026-10-15: mcp.studocu.com is NXDOMAIN; the official MCP Registry entry
+  com.studocu/studocu lists https://agent-os-mcp.alpha.studocu.com/mcp (streamable-http), which answers
+  initialize 200. Landing page https://www.studocu.com/mcp.'
 registry_name: com.studocu/studocu
+tool_quality:
+  tool_count: 18
+  tokens_total: 16469
+  tokens_per_tool_median: 558
+  heavy_tools:
+  - name: write-artifact
+    tokens: 3632
+  - name: read-artifact
+    tokens: 3089
+  - name: get-context
+    tokens: 1763
+  heavy_tool_count: 3
+  params_total: 45
+  params_undescribed: 12
+  params_described_pct: 73.3
+  tools_with_undescribed_params: 4
+  tools_annotated: 18
+  annotated_pct: 100.0
+  state_changing_unhinted: []
+  tools_missing_schema: 0
+  short_descriptions: 0
+  duplicate_descriptions: 0
+  duplicate_names: 0
+  nonportable_names: []
+  output_schema_count: 18
+  token_estimate: chars/3.6 of each compact tool definition
+  source: mcp/studocu-mcp-tools.json
+  measured: '2026-10-20'
+  scored: false
+  note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
+    from Glimind's agent-readiness audit.
