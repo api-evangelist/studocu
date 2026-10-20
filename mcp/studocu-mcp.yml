@@ -117,7 +117,7 @@ correction: 'Influence correction 2026-10-15: mcp.studocu.com is NXDOMAIN; the o
 registry_name: com.studocu/studocu
 tool_quality:
   tool_count: 18
-  tokens_total: 16469
+  tokens_total: 16560
   tokens_per_tool_median: 558
   heavy_tools:
   - name: write-artifact
@@ -127,9 +127,9 @@ tool_quality:
   - name: get-context
     tokens: 1763
   heavy_tool_count: 3
-  params_total: 45
+  params_total: 46
   params_undescribed: 12
-  params_described_pct: 73.3
+  params_described_pct: 73.9
   tools_with_undescribed_params: 4
   tools_annotated: 18
   annotated_pct: 100.0

@@ -73,6 +73,10 @@
               "exclusiveMinimum": 0,
               "maximum": 2147483647
             },
+            "use_no_course_as_fallback": {
+              "description": "Only used with `course_id`. When true and that course has no matching documents, search again without the course, so results may come from other courses; check each result's `course_id`. Default false.",
+              "type": "boolean"
+            },
             "limit": {
               "default": 10,
               "description": "Number of results to return (1-50, default: 10).",
@@ -130,8 +134,14 @@
                   "course": {
                     "type": "string"
                   },
+                  "course_id": {
+                    "type": "number"
+                  },
                   "institution": {
                     "type": "string"
+                  },
+                  "institution_id": {
+                    "type": "number"
                   },
                   "url": {
                     "type": "string"
