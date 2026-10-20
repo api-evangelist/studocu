@@ -13,12 +13,100 @@ deployment:
   probe: live
   checked: '2026-10-15'
   source: docs-check 2026-09-12 (endpoint found in the provider's own documentation, then probed)
-tools_count: 1
+tools_count: 18
 tools:
 - name: search-documents
-  description: Use this when the user wants to find, search, or browse study documents, lecture notes,
-    summaries, or course materials on Studocu. Pass the topic/keywords as `query`, and — when you can
-    infer them — the `institution` and `course` as separat
+  description: 'Use this when the user wants to find, search, or browse study documents, lecture notes,
+    summaries, or course materials on Studocu. Pass topic/keywords as `query` only — never put course
+    name, course id, or institution name in `query`. `institution` is a display name only (this tool has
+    no institution_id). Prefer numeric `course_id` from search-courses when you have it: it pins the course
+    and overrules `course`. If both `course_id` and `institution` are sent, `course_id` wins; result institution
+    is that course''s university, not the name you passed. Otherwise pass `course` as name or code, never
+    as a numeric id. `course` is optional extra if you already have `course_id`. Omit unknown filters.
+    Returns matching documents with titles, course and institution info, ratings, and a link to view each
+    on Studocu.'
+- name: search-institutions
+  description: Search Studocu institutions by name when establishing or correcting education context (onboarding
+    / context setup). Do not require this before every document search. Structured results include id,
+    name, type, region_code, and country for follow-up tools. When talking to the user, present name/type/country/region
+    only — do not show internal IDs. Auto-pick a clear top match; if the shortlist is ambiguous, ask the
+    user to choose by name. Resolved IDs are conversation-scoped until a persistence capability owns them.
+- name: search-courses
+  description: 'Search Studocu courses when establishing or correcting course context. Prefer institution_id
+    from search-institutions to scope results. Omit institution_id only when the institution is unknown:
+    results then include catalog institution_id, and institution_name when Algolia has it. Do not require
+    this before every document search. Structured results include course_id, name, code (nullable), institution_id,
+    and optional institution_name. When talking to the user, present name, course code, and institution
+    name only — do not show internal IDs. Auto-pick a clear top match; if the shortlist is ambiguous,
+    ask the user to choose by name/code. Resolved IDs are conversation-scoped until a persistence capability
+    owns them.'
+- name: get-course-syllabus
+  description: Return a generated course outline as markdown when this tool has one. This is the best
+    grounding for high-quality study guidance. If it is missing, a syllabus may be generating, so try
+    again in a few minutes. Requires course_id.
+- name: agent-os-session
+  description: Use this proof tool to verify that the Agent OS MCP server received a valid delegated Studocu
+    session.
+- name: read-artifact
+  description: Read a Studocu project source or creation by its studocu://project/{project_id}/{kind}/{uuid}
+    URI. Returns normalized metadata with explicitly mapped inline content.
+- name: read-detached-document
+  description: Read a Studocu document directly, without requiring or creating a project source. Use read-artifact
+    for documents attached to a project.
+- name: get-context
+  description: 'Return the unified Agent OS context manifest for the authenticated user: profile, followed
+    courses, project metadata, and recent activity. Every project includes has_course_mastery and started_course_mastery
+    (course supports Infinite Practice / learner has started it). Course mastery is visible only on projects,
+    not followed_courses. Practised-topic detail (topic_masteries) is included only when a course is in
+    scope (project_id, a sole remaining project, or remaining projects that share one course_id); the
+    field is omitted when detail was not loaded. Empty topic_masteries means that course was loaded and
+    the learner has no practised topics. Use get-course-mastery(course_id) for the practised-topic list
+    when context omitted detail. Agent OS is read-only: chatting or calling this tool does not change
+    mastery. Source of truth is Infinite Practice attempts (identity + course + topic); web IP writes,
+    ACE/mobile/Agent OS only read.'
+- name: get-project-state
+  description: Return sources and creations (project state) for one or more projects by id. Creation rows
+    may include external_id (quizId or mockExamId) so a request-creation creating response can be matched
+    once Alpha identity appears. Use after get-context (which lists projects without their sources/creations)
+    to load those projects' artifacts. Only projects you can access are returned.
+- name: get-course-mastery
+  description: 'Return practised-topic Infinite Practice mastery for a course (topic_id, topic_name when
+    available, display 0–100, questions_answered). Use after get-context flags (has_course_mastery / started_course_mastery)
+    or whenever context omitted topic_masteries. Agent OS is read-only: chatting, creating artifacts,
+    or calling this tool does not change mastery. Source of truth is Infinite Practice attempts (user_topic_mastery:
+    identity + course + topic); display matches the web IP UI. Progress is learner- and course-scoped,
+    not chat- or client-scoped — web IP writes it; ACE/mobile/Agent OS only read the same rows. Empty
+    topic_masteries means no IP attempts yet, not a separate client score. Requires course_id.'
+- name: write-artifact
+  description: Create a Studocu artifact from typed content. Provide project_id and an artifact envelope;
+    the artifact type defines the required content shape.
+- name: add-document-sources
+  description: Attach up to 10 Studocu documents from search-documents to a project. Returns the sources
+    that were successfully added; compare with document_ids if some were omitted.
+- name: create-project
+  description: Create a Studocu project and optionally configure its emoji and course. A numeric course_id
+    is validated before project creation.
+- name: update-project
+  description: Update a Studocu project title, emoji, or course. Use course_id null to clear the course
+    and institution.
+- name: request-creation
+  description: Generate a Studocu quiz or mockExam from 1-10 project source artifacts. Waits up to ~3
+    minutes; returns artifact_id and external_id when created, status creating with external_id when persist
+    is not yet visible, or outcome_unknown on client timeout or in-flight duplicate (check get-project-state
+    before retrying). Optional idempotency_key is forwarded as Idempotency-Key; identical retries without
+    a key still dedupe.
+- name: read-memory
+  description: Read durable agent memory for the authenticated user. Returns one document per (scope,
+    kind); use project_id for project-scoped memory. Identity comes from Core via the session bearer,
+    not from input.
+- name: write-memory
+  description: Upsert one durable memory document per (scope, kind) for the authenticated user. Provide
+    project_id for project-local memory, or null/omit for global. Identity comes from Core via the session
+    bearer, not from input.
+- name: delete-memory
+  description: Delete one durable memory document identified by (scope, kind) for the authenticated user.
+    Provide project_id for project-local memory, or null/omit for global. Identity comes from Core via
+    the session bearer, not from input.
 tools_source: live tools/list via initialize handshake, 2026-09-12 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
 descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
